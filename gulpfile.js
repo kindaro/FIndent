@@ -27,7 +27,7 @@ gulp.task('gulpfile', function() {
 });
 
 gulp.task('jade', function() {
-  return gulp.src('./src/**/*.jade').pipe(jade({
+  return gulp.src(['./src/**/*.jade', '!./src/_*/**/*.jade']).pipe(jade({
     pretty: true
   })).pipe(minifyHTML({})).pipe(gulp.dest('./build'));
 });

@@ -20,7 +20,7 @@ gulp.task 'gulpfile',
 
 gulp.task 'jade',
     ->
-        gulp.src './src/**/*.jade'
+        gulp.src ['./src/**/*.jade', '!./src/_*/**/*.jade']
         .pipe jade {pretty: true}
         .pipe minifyHTML { }
         .pipe gulp.dest './build'
