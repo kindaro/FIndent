@@ -10,21 +10,21 @@
     "jade": "^1.9.2",
     "prefiks": "^0.3.3"
   },
-  "name": "fonts-collector",
+  "name": "initial",
   "version": "1.0.0",
-  "description": "Collect and compare fonts and typesets.",
+  "description": "Initial setup for a gulp + react web project.",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:kindaro/fonts-collector.git"
+    "url": "git@github.com:kindaro/initial.git"
   },
   "author": "Ignat Insarov",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kindaro/fonts-collector/issues"
+    "url": "https://github.com/kindaro/initial/issues"
   },
-  "homepage": "https://github.com/kindaro/fonts-collector"
+  "homepage": "https://github.com/kindaro/initial"
 }
