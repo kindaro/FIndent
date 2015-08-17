@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 # Perform destructive re-initialization of the project.
 # -----------------------------------------------------
