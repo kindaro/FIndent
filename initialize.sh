@@ -91,4 +91,5 @@ else # Batch.
     logic "$name" "$description" "$username"
 fi
 
+rm "$0"
 exit # In any way.
