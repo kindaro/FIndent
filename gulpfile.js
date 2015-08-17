@@ -1,4 +1,4 @@
-var coffee, gulp, jade, minifyHTML, sass, stylus, yaml;
+var coffee, gulp, jade, minifyHTML, pages, sass, stylus, yaml;
 
 gulp = require('gulp');
 
@@ -13,6 +13,8 @@ yaml = require('gulp-yaml');
 sass = require('gulp-sass');
 
 minifyHTML = require('gulp-minify-html');
+
+pages = require('gulp-gh-pages');
 
 gulp.task('default', ['coffee', 'jade', 'styl', 'yaml']);
 
@@ -50,4 +52,8 @@ gulp.task('yaml', function() {
 
 gulp.task('inuit', function() {
   return gulp.src('./inuit.css-web-template/css/style.scss').pipe(sass({})).on('error', sass.logError).pipe(gulp.dest('./build'));
+});
+
+gulp.task('pages', function() {
+  return gulp.src('./build/**/*').pipe(pages({}));
 });
