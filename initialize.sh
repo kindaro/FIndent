@@ -19,8 +19,7 @@ logic ()
     mkdir "$subId"
 
     # Reset Git repo.
-    mv ".git" "${subId}/.git.archive"
-    git init
+    git remote rename 'origin' 'initial'
 
     # Set npm project name, project description, associated variables.
     # (The latter implies "repository", "bugs" and "homepage")
