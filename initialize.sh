@@ -34,6 +34,8 @@ logic ()
     echo "$description" > README.md
 
     # Commit changes.
+    git branch master
+    git checkout master
     git add package.json
     git add README.md
     git add gulpfile.{js,coffee}
