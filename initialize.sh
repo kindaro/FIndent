@@ -30,6 +30,7 @@ logic ()
 
     git remote rename 'origin' 'initial'
     cabal init                    \
+        --is-executable           \
         --source-dir 'src'        \
         --license 'ISC'           \
         --synopsis "$description" \
@@ -38,6 +39,9 @@ logic ()
     echo "$description" > README.md
     mkdir -p src
     touch src/Main.hs
+    echo 'module Main where' >> src/Main.hs
+    echo                     >> src/Main.hs
+    echo 'main = return ()'  >> src/Main.hs
 
     # Commit local changes.
     # ---------------------
