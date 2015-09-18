@@ -36,7 +36,7 @@ logic ()
         --non-interactive
     cabal sandbox init
     echo "$description" > README.md
-    mkdir src
+    mkdir -p src
     touch src/Main.hs
 
     # Commit local changes.
