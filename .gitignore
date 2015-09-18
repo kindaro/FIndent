@@ -1,3 +1,2 @@
-build
-.publish
-node_modules
+.cabal-sandbox
+dist

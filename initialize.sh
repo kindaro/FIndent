@@ -10,48 +10,52 @@
 # -------------------------------------
 
 logic ()
+#
+# This function should have the following constraints:
+# ----------------------------------------------------
+# -- signature: logic :: name description username -> 0
+# -- only operates on current directory that is assumed to be named 'name'
+# -- creates a repository github.com:user/name
+#
 {
+    # Initialize parameters.
+    # ----------------------
+
     name="$1"
     description="$2"
     username="$3"
-    subId="`date +%s`"
 
-    mkdir "$subId"
+    # Make local changes.
+    # -------------------
 
-    # Reset Git repo.
     git remote rename 'origin' 'initial'
-
-    # Set npm project name, project description, associated variables.
-    # (The latter implies "repository", "bugs" and "homepage")
-    sed -i".archive" -r '
-        s/"name": "initial"/"name": "'"$name"'"/
-        s/"description": "[^"]*"/"description": "'"$description"'"/
-        s/(.*)initial(.*)/\1'"$name"'\2/
-        ' 'package.json'
-    mv 'package.json.archive' "$subId"
-
-    # Write a readme.
+    cabal init                    \
+        --source-dir 'src'        \
+        --license 'ISC'           \
+        --synopsis "$description" \
+        --non-interactive
+    cabal sandbox init
     echo "$description" > README.md
+    mkdir src
+    touch src/Main.hs
 
-    # Commit changes.
+    # Commit local changes.
+    # ---------------------
+
     git branch master
     git checkout master
-    git add package.json
-    git add README.md
-    git add gulpfile.{js,coffee}
-    git add src
+    git add "${name}.cabal" 'cabal.sandbox.config' 'README.md' 'LICENSE' 'src' 'Setup.hs'
     git commit -m "Automatic initial commit. All things set up."
     
-    # Synchronize.
+    # Push local changes to github.
+    # -----------------------------
+
     curl                                                             \
         -u "$username" https://api.github.com/user/repos             \
         -d '{"name":"'"$name"'", "description": "'"$description"'"}' \
         > /dev/null
     git remote add origin "git@github.com:${username}/${name}.git"
     git push --set-upstream origin master
-
-    # Clean up.
-    rm -rf "$subId"
 
     return 0
 }
@@ -97,3 +101,4 @@ fi
 
 rm "$0"
 exit # In any way.
+
