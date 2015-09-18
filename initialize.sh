@@ -43,6 +43,11 @@ logic ()
     echo                     >> src/Main.hs
     echo 'main = return ()'  >> src/Main.hs
 
+    # Kill itself.
+    # ------------
+
+    git rm -- "$0"
+
     # Commit local changes.
     # ---------------------
 
@@ -103,6 +108,5 @@ else # Batch.
     logic "$name" "$description" "$username"
 fi
 
-rm "$0"
 exit # In any way.
 
